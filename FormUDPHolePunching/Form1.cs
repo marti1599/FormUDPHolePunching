@@ -14,8 +14,10 @@ namespace FormUDPHolePunching
     {
         bool stopSender = false;
         bool stopListener = false;
-        bool stopScan = false;
 
+        /// <summary>
+        /// This contains the network informations of this machine
+        /// </summary>
         (STUN_NetType netType, EndPoint localEndPoint, EndPoint remoteEndPoint) MachineInfo;
 
         /* Steps:
@@ -49,12 +51,18 @@ namespace FormUDPHolePunching
 
         /*TIPS:
          * - VPN can workaround if sending packets to STUNs servers return always a different port
-         * 
-         * 
          */
+
+        /// <summary>
+        /// This is execute at the start
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
+
+            // *********************************
+            // Create a new firewall rule
+            // *********************************
 
             INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
             var currentProfiles = firewallPolicy.CurrentProfileTypes;
@@ -150,6 +158,10 @@ namespace FormUDPHolePunching
                 catch (Exception e) { }
             }
 
+            // *******************************
+            // Connect to a STUN server
+            // *******************************
+
             int defaultPort = 12357;
             TxtbxListenerIP.Text = IPAddress.Any.ToString();
             NudListenerPort.Value = defaultPort;
@@ -171,6 +183,10 @@ namespace FormUDPHolePunching
             }
         }
 
+        /// <summary>
+        /// Get the local IP of this machine
+        /// </summary>
+        /// <returns></returns>
         public IPAddress GetLocalIPAddress()
         {
             IPAddress localIP;
@@ -183,6 +199,10 @@ namespace FormUDPHolePunching
             return localIP;
         }
 
+        /// <summary>
+        /// This function is for add text to the log textbox
+        /// </summary>
+        /// <param name="value"></param>
         public void AppendTextBox(string value)
         {
             if (InvokeRequired)
@@ -193,6 +213,12 @@ namespace FormUDPHolePunching
             TxtbxLog.Text = value + Environment.NewLine + TxtbxLog.Text;
         }
 
+        /// <summary>
+        /// This Function is for connect to STUN servers for check the network type
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="port"></param>
+        /// <returns></returns>
         private (STUN_NetType netType, EndPoint localEndPoint, EndPoint remoteEndPoint) ConnectToSTUN(IPAddress IP, int port)
         {
             //List of STUN
@@ -262,28 +288,17 @@ namespace FormUDPHolePunching
             return (netType, epLocal, epPublic);
         }
 
+        /// <summary>
+        /// This button start the communication with a peer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStartConnection_Click(object sender, EventArgs e)
         {
             stopSender = false;
 
             Thread remoteSender = new Thread(() =>
             {
-                /*IPEndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxConnectionRemoteIPValue.Text), Convert.ToInt32(NudConnectionRemotePortValue.Value));
-
-                byte[] msg = Encoding.UTF8.GetBytes("SYN");
-                Socket remoteSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                while (!stopSender)
-                {
-                    remoteSocket.SendTo(msg, ep);
-                    Console.WriteLine("Sent SYN to " + ep.ToString());
-                    AppendTextBox("Sent SYN to " + ep.ToString());
-
-                    Thread.Sleep(500);
-                }
-
-                remoteSocket.Shutdown(SocketShutdown.Both);
-                remoteSocket.Close();*/
-
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxConnectionRemoteIPValue.Text), Convert.ToInt32(NudConnectionRemotePortValue.Value));
                 
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -305,36 +320,19 @@ namespace FormUDPHolePunching
             {
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxConnectionLocalIPValue.Text), Convert.ToInt32(NudConnectionLocalPortValue.Value));
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
-                socket.Bind(ep);
+                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                socket.Bind(new IPEndPoint(IPAddress.Any, Convert.ToInt32(NudConnectionLocalPortValue.Value)));
 
                 byte[] msg = Encoding.UTF8.GetBytes("SYN");
 
                 while (!stopSender)
                 {
-                    //localSocket.SendTo(msg, ep);
                     socket.SendTo(msg, ep);
                     Console.WriteLine("Sent SYN to " + ep.ToString() + " From " + socket.LocalEndPoint);
                     AppendTextBox("Sent SYN to " + ep.ToString() + " From " + socket.LocalEndPoint);
 
                     Thread.Sleep(500);
                 }
-
-                //localSocket.Shutdown(SocketShutdown.Both);
-                //localSocket.Close();
-
-                /*IPEndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxConnectionLocalIPValue.Text), Convert.ToInt32(NudConnectionLocalPortValue.Value));
-
-                byte[] msg = Encoding.UTF8.GetBytes("SYN");
-
-                while (!stopSender)
-                {
-                    socket.SendTo(msg, ep);
-                    Console.WriteLine("Sent SYN to " + ep.ToString());
-                    AppendTextBox("Sent SYN to " + ep.ToString());
-
-                    Thread.Sleep(500);
-                }*/
             });
 
             if (!TxtbxConnectionRemoteIPValue.Text.Equals("") && NudConnectionRemotePortValue.Value != 0)
@@ -347,11 +345,21 @@ namespace FormUDPHolePunching
             }
         }
 
+        /// <summary>
+        /// This button stop the connection with a peer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStopConnection_Click(object sender, EventArgs e)
         {
             stopSender = true;
         }
 
+        /// <summary>
+        /// This button start the listener for handle incoming messages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStartListener_Click(object sender, EventArgs e)
         {
             Thread listener = new Thread(() =>
@@ -360,43 +368,7 @@ namespace FormUDPHolePunching
                 {
                     stopListener = false;
 
-                    /*EndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxListenerIP.Text), Convert.ToInt32(NudListenerPort.Value));
-                    Socket localSocket = new Socket(SocketType.Dgram, ProtocolType.Udp);
-
-                    localSocket.Bind(ep);
-
-                    Console.WriteLine("Listening on " + ep.ToString());
-                    AppendTextBox("Listening on " + ep.ToString());
-
-                    localSocket.ReceiveTimeout = 1000;
-
-                    while (!stopListener)
-                    {
-                        try
-                        {
-                            byte[] msg = new byte[localSocket.ReceiveBufferSize];
-                            localSocket.Receive(msg);
-
-                            int lastIndex = Array.FindLastIndex(msg, b => b != 0);
-                            Array.Resize(ref msg, lastIndex + 1);
-
-                            Console.WriteLine("Received " + Encoding.UTF8.GetString(msg) + " from " + localSocket.LocalEndPoint.ToString());
-                            AppendTextBox("Received " + Encoding.UTF8.GetString(msg) + " from " + localSocket.LocalEndPoint.ToString());
-                        }
-                        catch (SocketException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            AppendTextBox(ex.Message);
-                        }
-                    }
-
-                    localSocket.Shutdown(SocketShutdown.Both);
-                    localSocket.Close();*/
-
                     EndPoint listeningEP = new IPEndPoint(IPAddress.Parse(TxtbxListenerIP.Text), Convert.ToInt32(NudListenerPort.Value));
-
-                    //Console.WriteLine("Listening on " + ep.ToString());
-                    //AppendTextBox("Listening on " + ep.ToString());
 
                     Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                     socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
@@ -414,7 +386,6 @@ namespace FormUDPHolePunching
                             EndPoint ep = new IPEndPoint(IPAddress.Any, 0);
 
                             byte[] msg = new byte[socket.ReceiveBufferSize];
-                            //socket.SendTo(Encoding.UTF8.GetBytes("test"), new IPEndPoint(IPAddress.Parse("167.86.122.45"), Convert.ToInt32(NudListenerPort.Value)));
                             socket.ReceiveFrom(msg, ref ep);
 
                             int lastIndex = Array.FindLastIndex(msg, b => b != 0);
@@ -443,46 +414,25 @@ namespace FormUDPHolePunching
             listener.Start();
         }
 
+        /// <summary>
+        /// This button stop the listener to handle incoming messages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStopListener_Click(object sender, EventArgs e)
         {
             stopListener = true;
         }
 
-        private void BtnStartScan_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This is the even when the form close, this stop every connection/listener thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            /*stopScan = false;
-            Thread remoteSender = new Thread(() =>
-            {
-                for (int i = 1; i < 65535; i++)
-                {
-                    try
-                    {
-                        if(stopScan)
-                        {
-                            break;
-                        }
-
-                        IPEndPoint ep = new IPEndPoint(IPAddress.Parse(TxtbxScanRemoteIPValue.Text), i);
-
-                        byte[] msg = Encoding.UTF8.GetBytes("SYN");
-                        MachineInfo.socket.SendTo(msg, ep);
-
-                        Console.WriteLine("Sent SYN to " + ep.ToString());
-                        AppendTextBox("Sent SYN to " + ep.ToString());
-                    }
-                    catch (Exception ex) { }
-                }
-
-                Console.WriteLine("Done");
-                AppendTextBox("Done");
-            });
-
-            remoteSender.Start();*/
-        }
-
-        private void BtnStopScan_Click(object sender, EventArgs e)
-        {
-            stopScan = true;
+            stopListener = true;
+            stopSender = true;
         }
     }
 }

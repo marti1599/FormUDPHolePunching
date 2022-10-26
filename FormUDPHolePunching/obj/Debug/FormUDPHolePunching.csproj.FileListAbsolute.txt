@@ -44,3 +44,39 @@ C:\Users\marti\Desktop\PCLavoroProgs\FormUDPHolePunching\FormUDPHolePunching\obj
 C:\Users\marti\Desktop\PCLavoroProgs\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.CoreCompileInputs.cache
 C:\Users\marti\Desktop\PCLavoroProgs\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.exe
 C:\Users\marti\Desktop\PCLavoroProgs\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.pdb
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe.config
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.pdb
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.AssemblyReference.cache
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\Interop.NetFwTypeLib.dll
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.ResolveComReference.cache
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Form1.resources
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Properties.Resources.resources
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.GenerateResource.cache
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.CoreCompileInputs.cache
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.exe
+D:\Software Develop\UDP P2P TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.pdb
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe.config
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.pdb
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.AssemblyReference.cache
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\Interop.NetFwTypeLib.dll
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.ResolveComReference.cache
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Form1.resources
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Properties.Resources.resources
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.GenerateResource.cache
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.CoreCompileInputs.cache
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.exe
+D:\Software Develop\UDP, P2P, TCP\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.pdb
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe.config
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.exe
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\bin\Debug\FormUDPHolePunching.pdb
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.AssemblyReference.cache
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\Interop.NetFwTypeLib.dll
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.ResolveComReference.cache
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Form1.resources
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.Properties.Resources.resources
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.GenerateResource.cache
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.csproj.CoreCompileInputs.cache
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.exe
+C:\Users\marti\Desktop\ONLY LOCAL\FormUDPHolePunching\FormUDPHolePunching\obj\Debug\FormUDPHolePunching.pdb

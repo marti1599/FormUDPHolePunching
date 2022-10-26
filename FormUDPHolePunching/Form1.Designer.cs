@@ -49,9 +49,6 @@ namespace FormUDPHolePunching
             this.LblListenerEndPoint = new System.Windows.Forms.Label();
             this.NudListenerPort = new System.Windows.Forms.NumericUpDown();
             this.TxtbxListenerIP = new System.Windows.Forms.TextBox();
-            this.TxtbxScanRemoteIPValue = new System.Windows.Forms.TextBox();
-            this.BtnStartScan = new System.Windows.Forms.Button();
-            this.BtnStopScan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NudConnectionLocalPortValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudConnectionRemotePortValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudListenerPort)).BeginInit();
@@ -240,41 +237,11 @@ namespace FormUDPHolePunching
             this.TxtbxListenerIP.Size = new System.Drawing.Size(163, 20);
             this.TxtbxListenerIP.TabIndex = 21;
             // 
-            // TxtbxScanRemoteIPValue
-            // 
-            this.TxtbxScanRemoteIPValue.Location = new System.Drawing.Point(12, 353);
-            this.TxtbxScanRemoteIPValue.Name = "TxtbxScanRemoteIPValue";
-            this.TxtbxScanRemoteIPValue.Size = new System.Drawing.Size(238, 20);
-            this.TxtbxScanRemoteIPValue.TabIndex = 25;
-            // 
-            // BtnStartScan
-            // 
-            this.BtnStartScan.Location = new System.Drawing.Point(12, 379);
-            this.BtnStartScan.Name = "BtnStartScan";
-            this.BtnStartScan.Size = new System.Drawing.Size(163, 37);
-            this.BtnStartScan.TabIndex = 24;
-            this.BtnStartScan.Text = "Start Sender";
-            this.BtnStartScan.UseVisualStyleBackColor = true;
-            this.BtnStartScan.Click += new System.EventHandler(this.BtnStartScan_Click);
-            // 
-            // BtnStopScan
-            // 
-            this.BtnStopScan.Location = new System.Drawing.Point(181, 379);
-            this.BtnStopScan.Name = "BtnStopScan";
-            this.BtnStopScan.Size = new System.Drawing.Size(69, 36);
-            this.BtnStopScan.TabIndex = 26;
-            this.BtnStopScan.Text = "Stop";
-            this.BtnStopScan.UseVisualStyleBackColor = true;
-            this.BtnStopScan.Click += new System.EventHandler(this.BtnStopScan_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 538);
-            this.Controls.Add(this.BtnStopScan);
-            this.Controls.Add(this.TxtbxScanRemoteIPValue);
-            this.Controls.Add(this.BtnStartScan);
             this.Controls.Add(this.LblListenerEndPoint);
             this.Controls.Add(this.NudListenerPort);
             this.Controls.Add(this.TxtbxListenerIP);
@@ -297,6 +264,7 @@ namespace FormUDPHolePunching
             this.Controls.Add(this.LblNetType);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.NudConnectionLocalPortValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudConnectionRemotePortValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudListenerPort)).EndInit();
@@ -327,9 +295,6 @@ namespace FormUDPHolePunching
         private System.Windows.Forms.Label LblListenerEndPoint;
         private System.Windows.Forms.NumericUpDown NudListenerPort;
         private System.Windows.Forms.TextBox TxtbxListenerIP;
-        private System.Windows.Forms.TextBox TxtbxScanRemoteIPValue;
-        private System.Windows.Forms.Button BtnStartScan;
-        private System.Windows.Forms.Button BtnStopScan;
     }
 }
 
